@@ -5,9 +5,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class CaocaoController {
@@ -17,10 +18,11 @@ public class CaocaoController {
     @RequestMapping(value = "/order", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
             produces = {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-    String index(@RequestBody Object object){
+    @ResponseBody
+    String index( MultiValueMap paramMap) throws Exception{
 
         Gson gson = new Gson();
-        logger.info("订单接到回调请求=" + gson.toJson(object));
+        logger.info("订单接到回调请求=" + gson.toJson(paramMap));
         return "index";
     }
 }
