@@ -23,6 +23,10 @@ public class CaocaoController {
     @ResponseBody
     String index(@RequestParam Map<String, String> paramMap) throws Exception{
 
+        /**
+         * {"ext_order_id":"493173102000","sign":"36e9ce4361fe8ab5081ec94dfc3e95d2c6fd170c","event":"4","order_id":"493173102000"
+         * ,"sign_key":"55f4afd5437ddc8fed1cc7cdcb126eb2","timestamp":"1603876976883"}
+         */
         Gson gson = new Gson();
         logger.info("订单接到回调请求=" + gson.toJson(paramMap));
         return "index";
